@@ -31,3 +31,4 @@ def output_info() -> None:
             part.fstype,
             part.mountpoint))
 
+output_info()

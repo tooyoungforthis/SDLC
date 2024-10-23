@@ -26,12 +26,15 @@ def _extract_zip(
         zip_name: str,
         extract_to: str) -> None:
     """Разархивирование файлов и вывод информации"""
-    with zipfile.ZipFile(zip_name, 'r') as zipf:
-        zipf.extractall(extract_to)
-        print(f"Архив '{zip_name}' разархивирован в '{extract_to}'")
-        print("Содержимое архива:")
-        for file_info in zipf.infolist():
-            print(f"- {file_info.filename} ({file_info.file_size} байт)")
+    try:
+        with zipfile.ZipFile(zip_name, 'r') as zipf:
+            zipf.extractall(extract_to)
+            print(f"Архив '{zip_name}' разархивирован в '{extract_to}'")
+            print("Содержимое архива:")
+            for file_info in zipf.infolist():
+                print(f"- {file_info.filename} ({file_info.file_size} байт)")
+    except Exception as e:
+        print(e)
 
 
 def _delete_file_and_zip(
@@ -76,4 +79,4 @@ def archive_operations():
 
     _delete_file_and_zip(zip_path, filepath)
 
-archive_operations()
+_extract_zip('/home/ramazan/SDLC/prac_1/zblg.zip', '/home/ramazan/SDLC/prac_1/zblg')
